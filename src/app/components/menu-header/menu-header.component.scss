@@ -1,0 +1,34 @@
+.menu-header {
+  width: 100%;
+  height: 12.5rem;
+  border-radius: 0.75rem;
+  background-image: url("/assets/images/bg-menu-header.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+
+  &__logo {
+    width: 7.5rem;
+    height: 7.5rem;
+    object-fit: cover;
+    display: block; // removes the bottom space/gap typical with inline elements
+    border-radius: 0.75rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 3rem;
+    color: var(--font-color-white);
+  }
+
+  &__content {
+    display: flex;
+    align-items: flex-end;
+    column-gap: 1.25rem;
+    margin-left: 0.625rem;
+    margin-bottom: 1.25rem;
+  }
+}
