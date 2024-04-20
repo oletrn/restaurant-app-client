@@ -1,8 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MenuHeaderComponent } from '../menu-header/menu-header.component';
-import { ChipComponent } from '../chip/chip.component';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ChipComponent } from '../chip/chip.component';
+import { MenuHeaderComponent } from '../menu-header/menu-header.component';
 import { SearchInputComponent } from '../search-input/search-input.component';
+import { MenuService } from './../../menu.service';
+import { Dish } from './../../models/dish.interface';
 
 @Component({
   selector: 'app-menu',
@@ -12,9 +15,15 @@ import { SearchInputComponent } from '../search-input/search-input.component';
   standalone: true,
   imports: [MenuHeaderComponent, ChipComponent, SearchInputComponent, CommonModule]
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
   categories = ['Popular', 'Burger', 'Stake'];
   activeCategoryIndex = 0;
+  private menuService = inject(MenuService);
+  dishes$!: Observable<Dish[]>;
+
+  ngOnInit(): void {
+    this.dishes$ = this.menuService.fetchedDishes$;
+  }
 
   filterItems(query: string): void {
     console.log(query);
