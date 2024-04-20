@@ -1,3 +1,15 @@
 <div class="menu">
   <app-menu-header></app-menu-header>
+  <div class="menu__controls">
+    <div class="menu__chips">
+      <app-chip
+        *ngFor="let category of categories; let i = index"
+        class="menu__chip"
+        [text]="category"
+        [isActive]="i === activeCategoryIndex"
+        (click)="activeCategoryIndex = i"
+      ></app-chip>
+    </div>
+    <app-search-input class="menu__search" (search)="filterItems($event)"></app-search-input>
+  </div>
 </div>

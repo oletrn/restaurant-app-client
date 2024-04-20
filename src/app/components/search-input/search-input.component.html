@@ -1,0 +1,15 @@
+<div class="search">
+  <app-ui-icon
+    (click)="emitSearchEvent()"
+    class="search__icon"
+    [pathToIcon]="'assets/icons/search-lg.svg'"
+  ></app-ui-icon>
+  <input
+    class="search__input"
+    type="text"
+    [(ngModel)]="searchText"
+    placeholder="Search"
+    class="search__input"
+    (keydown)="handleKeydown($event)"
+  />
+</div>

@@ -1,0 +1,23 @@
+.search {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-color-light-grey);
+  padding: 0.438rem 1rem;
+  border-radius: 1.25rem;
+  border: none;
+  overflow: hidden;
+
+  &__icon {
+    margin-right: 0.625rem;
+    cursor: pointer;
+  }
+
+  &__input {
+    flex-grow: 1; /* Takes up remaining space */
+    border: none;
+    background: transparent;
+    outline: none;
+    color: var(--font-color-dark-grey);
+    font-size: var(--font-size-14);
+  }
+}

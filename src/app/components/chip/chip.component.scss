@@ -1,0 +1,15 @@
+.chip {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1.25rem;
+  font-size: var(--font-size-14);
+  font-weight: 500;
+  background-color: var(--bg-color-grey);
+  color: var(--ui-color-black);
+  cursor: pointer;
+
+  &--active {
+    background-color: var(--ui-color-black);
+    color: var(--font-color-white);
+  }
+}
