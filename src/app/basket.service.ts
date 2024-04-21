@@ -1,30 +1,25 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { ApiService } from './api.service';
+import { UiDataStateService } from './ui-data-state.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BasketService {
   private isOpen = new BehaviorSubject<boolean>(true);
-  private readonly fetchedBasketItems = new BehaviorSubject<any[]>([]);
   isOpen$ = this.isOpen.asObservable();
 
+
   private readonly apiService = inject(ApiService);
+  private readonly uiDataMappingService = inject(UiDataStateService);
 
-  get fetchedBasketItems$(): Observable<any> {
-    return this.fetchedBasketItems.asObservable()
-  }
 
-  fetchBasketItems(): void {
-    this.apiService.getBasketItems$().subscribe((data) => this.fetchedBasketItems.next(data));
-  }
-
-  openBasket() {
+  openBasket(): void {
     this.isOpen.next(true);
   }
 
-  closeBasket() {
+  closeBasket(): void {
     this.isOpen.next(false);
   }
 

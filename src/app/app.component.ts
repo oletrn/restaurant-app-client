@@ -1,9 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { MenuHeaderComponent } from './components/menu-header/menu-header.component';
-import { MenuComponent } from './components/menu/menu.component';
-import { MenuService } from './menu.service';
-import { BasketService } from './basket.service';
 import { Observable } from 'rxjs';
+import { BasketService } from './basket.service';
+import { UiDataStateService } from './ui-data-state.service';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +12,13 @@ export class AppComponent implements OnInit {
   title = 'restaurant-app-client';
   isBasketOpen$?: Observable<boolean>;
 
-  private menuService = inject(MenuService);
   private basketService = inject(BasketService);
+  private stateService = inject(UiDataStateService);
 
   ngOnInit(): void {
       this.isBasketOpen$ = this.basketService.isOpen$;
-      this.menuService.fetchDishes();
-      this.basketService.fetchBasketItems();
+      this.stateService.fetchDishes();
+      this.stateService.fetchBasketItems();
   }
 
   openBasket(): void {

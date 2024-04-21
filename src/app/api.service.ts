@@ -17,8 +17,8 @@ export class ApiService {
     return this.http.get<Dish[]>(this.baseUrl + ApiEndpoints.Dishes);
   }
 
-  getBasketItems$(): Observable<Dish[]> {
-    return this.http.get<Dish[]>(this.baseUrl + ApiEndpoints.Basket);
+  getBasketItems$(): Observable<BasketItem[]> {
+    return this.http.get<BasketItem[]>(this.baseUrl + ApiEndpoints.Basket);
   }
 
   addToBasket(data: BasketItem): Observable<BasketItem[]> {

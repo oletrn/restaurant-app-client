@@ -1,8 +1,8 @@
 <div class="order-summary-item">
-  <h3 class="order-summary-item__name"></h3>
-  <span class="order-summary-item__price"></span>
+  <h3 class="order-summary-item__name">{{ item.name }}</h3>
+  <div class="order-summary-item__price">Price per item: <app-price-tag [price]="item.price"></app-price-tag></div>
   <div class="order-summary-item__footer">
-    <span class="order-summary-item__total-price"> Total: <app-price-tag [price]="13"></app-price-tag></span>
-    <app-dish-counter [count]="3"></app-dish-counter>
+    <span class="order-summary-item__total-price"> Total: <app-price-tag [price]="item.price * item.amount"></app-price-tag></span>
+    <app-dish-counter [count]="item.amount"></app-dish-counter>
   </div>
 </div>

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PriceTagComponent } from '../price-tag/price-tag.component';
+import { Component, Input } from '@angular/core';
 import { DishCounterComponent } from '../dish-counter/dish-counter.component';
+import { PriceTagComponent } from '../price-tag/price-tag.component';
+import { UiBasketItem } from './../../models/ui-basket-item';
 
 @Component({
   selector: 'app-order-summary-item',
@@ -11,5 +12,5 @@ import { DishCounterComponent } from '../dish-counter/dish-counter.component';
   styleUrls: ['./order-summary-item.component.scss']
 })
 export class OrderSummaryItemComponent {
-
+  @Input({required: true}) item!: UiBasketItem;
 }

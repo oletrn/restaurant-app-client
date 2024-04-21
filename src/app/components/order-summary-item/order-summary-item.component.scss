@@ -1,0 +1,30 @@
+.order-summary-item {
+  background-color: var(--bg-color-light-grey);
+  border: 1px solid var(--bg-color-grey);
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+
+  &__name {
+    font-size: var(--font-size-16);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  &__price {
+    font-size: var(--font-size-14);
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+  }
+
+  &__total-price {
+    font-size: var(--font-size-16);
+    color: var(--ui-color-orange);
+    font-weight: 600;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
