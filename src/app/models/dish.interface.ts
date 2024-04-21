@@ -1,4 +1,4 @@
-import { DishCategory } from "./dish-category.emum";
+import { DishCategory } from "./dish-category.enum";
 
 export interface Dish {
   id: number;

@@ -1,3 +1,4 @@
 export enum ApiEndpoints {
-  GetDishes = 'dishes',
+  Dishes = 'dishes',
+  Basket = 'basket',
 }

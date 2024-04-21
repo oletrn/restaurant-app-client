@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
       this.isBasketOpen$ = this.basketService.isOpen$;
       this.menuService.fetchDishes();
+      this.basketService.fetchBasketItems();
   }
 
   openBasket(): void {
