@@ -10,6 +10,5 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiIconComponent {
-  @Input({required: true}) pathToIcon!: string;
-  @Input() size: 'md' | 'lg' = 'md';
+  @Input() size: 'md' | 'lg' | 'xlg' = 'md';
 }

@@ -1,11 +1,25 @@
+:host {
+  display: flex;
+}
 .ui-icon {
   width: 1rem;
   height: 1rem;
   object-fit: contain;
-  display: block;
+  display: inline-block;
+  cursor: pointer;
 
-  &--large {
+
+  &--l {
     width: 1.25rem;
     height: 1.25rem;
+  }
+
+  &--xl {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &:hover {
+    opacity: 0.75;
   }
 }

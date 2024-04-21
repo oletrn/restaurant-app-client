@@ -1,0 +1,10 @@
+.basket-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__title {
+    font-size: var(--font-size-24);
+    font-weight: 700;
+  }
+}

@@ -1,1 +1,3 @@
-<img [src]="pathToIcon" class="ui-icon" [ngClass]="{'ui-icon--large': size === 'lg'}">
+<span class="ui-icon" [ngClass]="{'ui-icon--l': size === 'lg', 'ui-icon--xl': size === 'xlg'}">
+  <ng-content></ng-content>
+</span>

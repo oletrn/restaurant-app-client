@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BasketButtonComponent } from './components/basket-button/basket-button.component';
+import { BasketComponent } from './components/basket/basket.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { BasketButtonComponent } from './components/basket-button/basket-button.
   imports: [
     MenuComponent,
     BasketButtonComponent,
+    BasketComponent,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
