@@ -1,0 +1,30 @@
+.dish-counter {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 6rem;
+  height: 2rem;
+
+  &__button {
+    background-color: var(--bg-color-grey);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+
+  &__count {
+    display: flex;
+    cursor: default;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--ui-color-white);
+    font-size: var(--font-size-16);
+    font-weight: 600;
+    line-height: 1.5rem;
+  }
+}

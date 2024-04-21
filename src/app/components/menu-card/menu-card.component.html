@@ -6,16 +6,29 @@
     <div class="menu-card__heading">
       <div class="menu-card__title">{{ dish.name }}</div>
       <app-ui-icon
-      [size]="'lg'"
-      class="search__icon"
-      [pathToIcon]="'assets/icons/info-icon.svg'"
-    ></app-ui-icon>
+        [size]="'lg'"
+        class="search__icon"
+        [pathToIcon]="'assets/icons/info-icon.svg'"
+      ></app-ui-icon>
     </div>
-    <div class="menu-card__description">{{ dish.description | truncate:100 }}</div>
+    <div class="menu-card__description">
+      {{ dish.description | truncate : 100 }}
+    </div>
 
     <div class="menu-card__controls">
-      <app-secondary-button>Add to card</app-secondary-button>
-      <app-price-tag class="menu-card__price" [price]="dish.price"></app-price-tag>
+      <app-secondary-button
+        *ngIf="selectedDishCount === 0"
+        (click)="addToCart()"
+        >Add to cart</app-secondary-button
+      >
+      <app-dish-counter
+        *ngIf="selectedDishCount > 0"
+        [(count)]="selectedDishCount"
+      ></app-dish-counter>
+      <app-price-tag
+        class="menu-card__price"
+        [price]="dish.price"
+      ></app-price-tag>
     </div>
   </div>
 </div>
