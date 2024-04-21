@@ -16,15 +16,12 @@ import { MenuCardComponent } from './../menu-card/menu-card.component';
   standalone: true,
   imports: [MenuHeaderComponent, ChipComponent, SearchInputComponent, MenuCardComponent, CommonModule]
 })
-export class MenuComponent implements OnInit {
-  categories = ['Popular', 'Burger', 'Stake'];
+export class MenuComponent {
   activeCategoryIndex = 0;
   private menuService = inject(MenuService);
-  dishes$!: Observable<Dish[]>;
+  dishes$ = this.menuService.fetchedDishes$;
+  categories$ = this.menuService.fetchedCategories$;
 
-  ngOnInit(): void {
-    this.dishes$ = this.menuService.fetchedDishes$;
-  }
 
   filterItems(query: string): void {
     console.log(query);
