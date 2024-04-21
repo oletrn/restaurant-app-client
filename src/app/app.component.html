@@ -1,7 +1,7 @@
 <div class="container">
   <app-menu class="menu"></app-menu>
   <div *ngIf="!(isBasketOpen$ | async)" class="basket-button">
-    <app-basket-button [itemCount]="5" (click)="openBasket()"></app-basket-button>
+    <app-basket-button [itemCount]="(totalAmountInBasket$ | async) ?? 0" (click)="openBasket()"></app-basket-button>
   </div>
   <app-basket *ngIf="isBasketOpen$ | async"></app-basket>
 </div>

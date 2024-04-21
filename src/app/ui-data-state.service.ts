@@ -19,6 +19,11 @@ export class UiDataStateService {
   fetchedBasketItems$ = this.fetchedBasketItems.asObservable();
   fetchedDishes$ = this.fetchedDishes.asObservable();
 
+  totalAmountInBasket$: Observable<number> = this.fetchedBasketItems$.pipe(
+    map(basketItems => basketItems.reduce((acc, item) => acc + item.amount, 0))
+  );
+
+
   uiBasketItems$: Observable<UiBasketItem[]> = combineLatest([
     this.fetchedBasketItems$,
     this.fetchedDishes$

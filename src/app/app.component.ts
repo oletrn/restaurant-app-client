@@ -9,16 +9,15 @@ import { UiDataStateService } from './ui-data-state.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'restaurant-app-client';
-  isBasketOpen$?: Observable<boolean>;
-
   private basketService = inject(BasketService);
   private stateService = inject(UiDataStateService);
+  isBasketOpen$ = this.basketService.isOpen$;
+  totalAmountInBasket$: Observable<number> = this.stateService.totalAmountInBasket$;
+
 
   ngOnInit(): void {
-      this.isBasketOpen$ = this.basketService.isOpen$;
-      this.stateService.fetchDishes();
-      this.stateService.fetchBasketItems();
+    this.stateService.fetchDishes();
+    this.stateService.fetchBasketItems();
   }
 
   openBasket(): void {
