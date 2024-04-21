@@ -6,11 +6,12 @@ import { UiIconComponent } from '../ui-icon/ui-icon.component';
 import { UiDishItem } from './../../models/ui-dish-item';
 import { TruncatePipe } from './../../pipes/truncate.pipe';
 import { SecondaryButtonComponent } from './../secondary-button/secondary-button.component';
+import { DishCountIconComponent } from './../dish-count-icon/dish-count-icon.component';
 
 @Component({
   selector: 'app-menu-card',
   standalone: true,
-  imports: [CommonModule, UiIconComponent, PriceTagComponent, SecondaryButtonComponent, TruncatePipe, DishCounterComponent,],
+  imports: [CommonModule, UiIconComponent, PriceTagComponent, SecondaryButtonComponent, TruncatePipe, DishCounterComponent, DishCountIconComponent],
   templateUrl: './menu-card.component.html',
   styleUrls: ['./menu-card.component.scss']
 })

@@ -1,14 +1,17 @@
 <div class="menu-card" *ngIf="dish">
   <div class="menu-card__left">
+    <app-dish-count-icon
+      class="menu-card__ordered-count"
+      *ngIf="!!dish.orderedAmount"
+      [color]="'orange'"
+      [count]="dish.orderedAmount"
+    ></app-dish-count-icon>
     <img class="menu-card__image" [src]="dish.image" />
   </div>
   <div class="menu-card__right">
     <div class="menu-card__heading">
       <div class="menu-card__title">{{ dish.name }}</div>
-      <app-ui-icon
-        [size]="'lg'"
-        class="search__icon"
-      >
+      <app-ui-icon [size]="'lg'" class="search__icon">
         <svg
           width="20"
           height="20"

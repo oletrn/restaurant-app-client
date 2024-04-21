@@ -31,6 +31,17 @@
     line-height: 1.313rem;
   }
 
+  &__left {
+    position: relative;
+  }
+
+
+  &__ordered-count {
+    position: absolute;
+    top: 0.313rem;
+    right: 0.313rem;
+  }
+
   &__right {
     padding: 1.25rem;
     display: flex;

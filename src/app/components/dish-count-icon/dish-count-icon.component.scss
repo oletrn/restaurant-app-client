@@ -1,17 +1,18 @@
 .circle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 50%;
-  padding: 0.5rem;
+  display: inline-block;
+  line-height: 0;
+  padding: 0.225rem;
   color: var(--ui-color-black);
   font-size: var(--font-size-14);
   font-weight: 700;
-  min-width: 0.875rem;
-  min-height: 0.875rem;
-  width: auto;
-  height: auto;
-  box-sizing: content-box;
+  &__inner {
+    display: inline-block;
+    padding-top: 50%;
+    padding-bottom: 50%;
+    margin-left: 0.225rem;
+    margin-right: 0.225rem;
+  }
 
   &--orange {
     background-color: var(--ui-color-orange);
