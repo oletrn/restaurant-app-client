@@ -1,4 +1,4 @@
-<div class="menu-card" *ngIf="dish">
+<div class="menu-card">
   <div class="menu-card__left">
     <app-dish-count-icon
       class="menu-card__ordered-count"
@@ -34,12 +34,13 @@
     <div class="menu-card__controls">
       <app-secondary-button
         *ngIf="selectedDishCount === 0"
-        (click)="addToCart()"
+        (click)="addToCart(dish.id)"
         >Add to cart</app-secondary-button
       >
       <app-dish-counter
         *ngIf="selectedDishCount > 0"
-        [(count)]="selectedDishCount"
+        [count]="selectedDishCount"
+        (countChange)="onCountChange($event)"
       ></app-dish-counter>
       <app-price-tag
         class="menu-card__price"

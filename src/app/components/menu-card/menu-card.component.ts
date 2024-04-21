@@ -1,12 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, DestroyRef, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
 import { DishCounterComponent } from '../dish-counter/dish-counter.component';
 import { PriceTagComponent } from '../price-tag/price-tag.component';
 import { UiIconComponent } from '../ui-icon/ui-icon.component';
+import { BasketService } from './../../basket.service';
+import { BasketItem } from './../../models/basket-item';
 import { UiDishItem } from './../../models/ui-dish-item';
 import { TruncatePipe } from './../../pipes/truncate.pipe';
-import { SecondaryButtonComponent } from './../secondary-button/secondary-button.component';
 import { DishCountIconComponent } from './../dish-count-icon/dish-count-icon.component';
+import { SecondaryButtonComponent } from './../secondary-button/secondary-button.component';
+import { Observable, debounceTime, fromEventPattern } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-menu-card',
@@ -15,9 +19,25 @@ import { DishCountIconComponent } from './../dish-count-icon/dish-count-icon.com
   templateUrl: './menu-card.component.html',
   styleUrls: ['./menu-card.component.scss']
 })
-export class MenuCardComponent {
-  @Input({required: true}) dish?: UiDishItem;
+export class MenuCardComponent implements OnChanges, OnInit {
+  @Input({required: true}) dish!: UiDishItem;
   selectedDishCount = 0;
+  private basketService = inject(BasketService);
+  private countChanges$?: Observable<number>;
+  private readonly destroyRef = inject(DestroyRef);
+
+  ngOnInit() {
+    this.countChanges$ = fromEventPattern(
+      (handler) => {
+        this.onCountChange = handler;
+      },
+    );
+    this.countChanges$.pipe(debounceTime(300), takeUntilDestroyed(this.destroyRef)).subscribe((count) => this.basketService.updateBasket({id: this.dish.id, amount: count}));
+  }
+
+  onCountChange(item: number): void {
+    this.selectedDishCount = item;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['dish'].currentValue) {
@@ -26,7 +46,9 @@ export class MenuCardComponent {
     }
   }
 
-  addToCart(): void {
+  addToCart(id: string): void {
     this.selectedDishCount = 1;
+    const item: BasketItem = {id, amount: this.selectedDishCount};
+    this.basketService.updateBasket(item);
   }
 }

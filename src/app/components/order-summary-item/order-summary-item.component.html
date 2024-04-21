@@ -7,6 +7,6 @@
     <span class="order-summary-item__total-price"
       >Total: <app-price-tag [price]="item.price * item.amount"></app-price-tag
     ></span>
-    <app-dish-counter [count]="item.amount"></app-dish-counter>
+    <app-dish-counter [count]="item.amount" (countChange)="onCountChange({id: item.id, amount: $event})"></app-dish-counter>
   </div>
 </div>

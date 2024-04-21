@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ApiService } from './api.service';
 import { UiDataStateService } from './ui-data-state.service';
+import { BasketItem } from './models/basket-item';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class BasketService {
     this.isOpen.next(false);
   }
 
-  updateBasket(data = {id: "8", amount: 5}): void {
-    this.apiService.addToBasket(data).subscribe(res => console.log(res));
+  updateBasket(data: BasketItem): void {
+    this.apiService.addToBasket(data).subscribe((res) => this.uiDataMappingService.updateFetchedBasketItems(res));
   }
 }

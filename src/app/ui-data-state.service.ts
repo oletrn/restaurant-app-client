@@ -50,10 +50,12 @@ export class UiDataStateService {
     })
   );
 
-
+  updateFetchedBasketItems(data: BasketItem[]): void {
+    this.fetchedBasketItems.next(data)
+  }
 
   fetchBasketItems(): void {
-    this.apiService.getBasketItems$().subscribe((data) => this.fetchedBasketItems.next(data));
+    this.apiService.getBasketItems$().subscribe((data) => this.updateFetchedBasketItems(data));
   }
 
   fetchDishes(): void {

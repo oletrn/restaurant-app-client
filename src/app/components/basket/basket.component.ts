@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OrderStep } from './../../models/order-step.enum';
 import { BasketHeaderComponent } from '../basket-header/basket-header.component';
 import { PriceTagComponent } from '../price-tag/price-tag.component';
 import { environment } from './../../../environments/environment';
 import { BasketService } from './../../basket.service';
+import { BasketItem } from './../../models/basket-item';
+import { OrderStep } from './../../models/order-step.enum';
 import { UiBasketItem } from './../../models/ui-basket-item';
 import { UiDataStateService } from './../../ui-data-state.service';
 import { OrderSummaryItemComponent } from './../order-summary-item/order-summary-item.component';
@@ -33,7 +34,7 @@ export class BasketComponent implements OnInit {
     this.basketService.closeBasket();
   }
 
-  updateBasket(): void {
-    this.basketService.updateBasket();
+  updateBasket(data: BasketItem): void {
+    this.basketService.updateBasket(data);
   }
 }
