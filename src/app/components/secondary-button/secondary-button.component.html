@@ -1,0 +1,9 @@
+<button
+  class="secondary-button"
+  [ngClass]="{
+    'secondary-button--hovered': isHovered,
+    'secondary-button--pressed': isPressed
+  }"
+>
+  <ng-content></ng-content>
+</button>

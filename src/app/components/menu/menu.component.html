@@ -12,7 +12,9 @@
     </div>
     <app-search-input class="menu__search" (search)="filterItems($event)"></app-search-input>
   </div>
-  <div class="menu__dishes" *ngFor="let dish of dishes$ | async; let i = index">
-    <pre>{{ dish | json }}</pre>
+  <div class="menu__dishes">
+    <div *ngFor="let dish of dishes$ | async; let i = index">
+      <app-menu-card [dish]="dish"></app-menu-card>
+    </div>
   </div>
 </div>

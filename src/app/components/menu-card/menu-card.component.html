@@ -1,1 +1,21 @@
-<p>menu-card works!</p>
+<div class="menu-card">
+  <div class="menu-card__left">
+    <img class="menu-card__image" [src]="dish.image" />
+  </div>
+  <div class="menu-card__right">
+    <div class="menu-card__heading">
+      <div class="menu-card__title">{{ dish.name }}</div>
+      <app-ui-icon
+      [size]="'lg'"
+      class="search__icon"
+      [pathToIcon]="'assets/icons/info-icon.svg'"
+    ></app-ui-icon>
+    </div>
+    <div class="menu-card__description">{{ dish.description | truncate:100 }}</div>
+
+    <div class="menu-card__controls">
+      <app-secondary-button>Add to card</app-secondary-button>
+      <app-price-tag class="menu-card__price" [price]="dish.price"></app-price-tag>
+    </div>
+  </div>
+</div>

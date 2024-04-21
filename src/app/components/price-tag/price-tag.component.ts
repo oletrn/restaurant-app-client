@@ -2,14 +2,13 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-ui-icon',
+  selector: 'app-price-tag',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './ui-icon.component.html',
-  styleUrls: ['./ui-icon.component.scss'],
+  template: `&#8364;&nbsp;{{ price }}`,
+  styleUrls: ['./price-tag.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UiIconComponent {
-  @Input({required: true}) pathToIcon!: string;
-  @Input() size: 'md' | 'lg' = 'md';
+export class PriceTagComponent {
+  @Input({required: true}) price!: number;
 }

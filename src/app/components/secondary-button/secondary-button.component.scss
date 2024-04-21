@@ -1,0 +1,19 @@
+.secondary-button {
+  background-color: var(--ui-color-black);
+  color: var(--ui-color-white);
+  border: none;
+  padding: 0.5rem 0.75rem;
+  font-size: var(--font-size14);
+  font-weight: 400;
+  cursor: pointer;
+  outline: none;
+  border-radius: 0.5rem;
+
+  &--hovered {
+    opacity: 0.75;
+  }
+
+  &--pressed {
+    transform: scale(0.95);
+  }
+}

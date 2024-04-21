@@ -1,0 +1,59 @@
+// :host {
+//   --child-font-size: 20px;
+//   --child-font-weight: 20px;
+// }
+
+
+.menu-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem;
+  padding: 0.313rem;
+  border: 1px solid var(--bg-color-grey);
+  border-radius: 0.75rem;
+  color: var(--ui-color-black);
+
+  &__image {
+    object-fit: cover;
+    display: block; // removes the bottom space/gap typical with inline elements
+    border-radius: 0.5rem;
+  }
+
+  &__title {
+    font-size: var(--font-size-16);
+    font-weight: 600;
+    line-height: 1.5rem;
+  }
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+  }
+
+  &__description {
+    font-size: var(--font-size-14);
+    line-height: 1.313rem;
+  }
+
+  &__right {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__price {
+    font-size: var(--font-size-18);
+    font-weight: 600;
+    line-height: 1.688rem;
+    cursor: default;
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+    margin-top: auto;
+  }
+}

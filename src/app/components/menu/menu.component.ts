@@ -6,6 +6,7 @@ import { MenuHeaderComponent } from '../menu-header/menu-header.component';
 import { SearchInputComponent } from '../search-input/search-input.component';
 import { MenuService } from './../../menu.service';
 import { Dish } from './../../models/dish.interface';
+import { MenuCardComponent } from './../menu-card/menu-card.component';
 
 @Component({
   selector: 'app-menu',
@@ -13,7 +14,7 @@ import { Dish } from './../../models/dish.interface';
   styleUrls: ['./menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [MenuHeaderComponent, ChipComponent, SearchInputComponent, CommonModule]
+  imports: [MenuHeaderComponent, ChipComponent, SearchInputComponent, MenuCardComponent, CommonModule]
 })
 export class MenuComponent implements OnInit {
   categories = ['Popular', 'Burger', 'Stake'];

@@ -3,4 +3,9 @@
   height: 1rem;
   object-fit: contain;
   display: block;
+
+  &--large {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 }
