@@ -1,0 +1,28 @@
+.basket-button {
+  position: relative;
+  width: 5.625rem;
+  height: 5.625rem;
+  background-color: var(--ui-color-orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.75;
+  }
+
+  &__icon {
+    position: absolute;
+    bottom: 30%;
+    left: 30%;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &__count {
+    position: absolute;
+    top: 15%;
+    right: 15%;
+  }
+}

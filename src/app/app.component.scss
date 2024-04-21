@@ -20,3 +20,10 @@
   margin-top: 3.125rem;
   grid-column: 2;
 }
+
+.basket-button {
+  position: fixed;
+  right: 3.125rem;
+  bottom: 2.75rem;
+  z-index: 1000;
+}
