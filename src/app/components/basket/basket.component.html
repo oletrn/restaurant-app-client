@@ -6,31 +6,36 @@
     "
     (close)="onClose()"
   ></app-basket-header>
-  <ng-container *ngIf="basketHadItems$ | async; else emptyBasket">
-    <div class="basket__items">
-      <app-order-summary-item
-        class="basket__item"
-        *ngFor="let item of basketItems$ | async; trackBy: trackById"
-        [item]="item"
-      ></app-order-summary-item>
-    </div>
-    <div class="basket__summary">
-      <div class="basket__summary-item" *ngIf="subTotalPrice$ | async as subTotalPrice">
-        <span>Subtotal</span><app-price-tag [price]="subTotalPrice"></app-price-tag>
-      </div>
-      <div class="basket__summary-item" *ngIf="deliveryFee$ | async as fee">
-        <span>Delivery fee</span><app-price-tag [price]="fee"></app-price-tag>
-      </div>
-      <div class="basket__summary-item" *ngIf="totalPrice$ | async as totalPrice">
-        <span>Total</span><app-price-tag [price]="totalPrice"></app-price-tag>
-      </div>
-    </div>
-    <div class="basket__controls">
-      <app-primary-button *ngIf="totalPrice$ | async as price">Order (&#8364;&nbsp;{{(price) | roundPrice}})</app-primary-button>
-      <app-primary-button (click)="onClose()" [color]="'grey'">Continue shopping</app-primary-button>
-    </div>
+  <ng-container *ngIf="currentOrderStep === orderStepEnum.Payment; else stepConfirmOrder">
+    <div class="payment"></div>
   </ng-container>
-  <ng-template #emptyBasket>
-    <div>Your basket is empty.</div>
+  <ng-template #stepConfirmOrder>
+    <ng-container *ngIf="basketHasItems$ | async; else emptyBasket">
+      <div class="basket__items">
+        <app-order-summary-item
+          class="basket__item"
+          *ngFor="let item of basketItems$ | async; trackBy: trackById"
+          [item]="item"
+        ></app-order-summary-item>
+      </div>
+      <div class="basket__summary">
+        <div class="basket__summary-item" *ngIf="subTotalPrice$ | async as subTotalPrice">
+          <span>Subtotal</span><app-price-tag [price]="subTotalPrice"></app-price-tag>
+        </div>
+        <div class="basket__summary-item" *ngIf="deliveryFee$ | async as fee">
+          <span>Delivery fee</span><app-price-tag [price]="fee"></app-price-tag>
+        </div>
+        <div class="basket__summary-item" *ngIf="totalPrice$ | async as totalPrice">
+          <span>Total</span><app-price-tag [price]="totalPrice"></app-price-tag>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #emptyBasket>
+      <div>Your basket is empty.</div>
+    </ng-template>
   </ng-template>
+  <div class="basket__controls" *ngIf="basketHasItems$ | async">
+    <app-primary-button (click)="goToPayment()" *ngIf="totalPrice$ | async as price">Order (&#8364;&nbsp;{{(price) | roundPrice}})</app-primary-button>
+    <app-primary-button (click)="onClose()" [color]="'grey'">Continue shopping</app-primary-button>
+  </div>
 </div>

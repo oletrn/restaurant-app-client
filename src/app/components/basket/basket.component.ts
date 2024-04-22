@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { map } from 'rxjs';
+import { map, share } from 'rxjs';
 import { BasketHeaderComponent } from '../basket-header/basket-header.component';
 import { PriceTagComponent } from '../price-tag/price-tag.component';
 import { PrimaryButtonComponent } from '../primary-button/primary-button.component';
@@ -21,14 +21,18 @@ import { OrderSummaryItemComponent } from './../order-summary-item/order-summary
 })
 export class BasketComponent {
   readonly orderStepEnum = OrderStep;
-  readonly currentOrderStep: OrderStep = OrderStep.Confirmation;
+  currentOrderStep: OrderStep = OrderStep.Confirmation;
   private readonly basketService = inject(BasketService);
   private readonly stateService = inject(UiDataStateService);
   readonly basketItems$ = this.stateService.uiBasketItems$;
-  readonly basketHadItems$ = this.stateService.uiBasketItems$.pipe(map((items) => !!items.length));
+  readonly basketHasItems$ = this.stateService.uiBasketItems$.pipe(map((items) => !!items.length), share());
   readonly deliveryFee$ = this.stateService.deliveryFee$;
   readonly totalPrice$ = this.stateService.totalPriceInBasket$;
   readonly subTotalPrice$ = this.stateService.subTotalPriceInBasket$;
+
+  goToPayment(): void {
+    this.currentOrderStep = this.orderStepEnum.Payment;
+  }
 
   onClose(): void {
     this.basketService.closeBasket();
