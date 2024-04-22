@@ -9,7 +9,7 @@
   <div class="basket__items">
     <app-order-summary-item
       class="basket__item"
-      *ngFor="let item of basketItems$ | async"
+      *ngFor="let item of basketItems$ | async; trackBy: trackById"
       [item]="item"
     ></app-order-summary-item>
   </div>

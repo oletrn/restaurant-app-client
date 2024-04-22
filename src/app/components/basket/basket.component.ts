@@ -37,4 +37,8 @@ export class BasketComponent implements OnInit {
   updateBasket(data: BasketItem): void {
     this.basketService.updateBasket(data);
   }
+
+  trackById(index: number, dish: UiBasketItem): string {
+    return dish.id;
+  }
 }

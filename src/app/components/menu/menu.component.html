@@ -3,7 +3,7 @@
   <div class="menu__controls">
     <div class="menu__chips">
       <app-chip
-        *ngFor="let category of categories$ | async; let i = index"
+        *ngFor="let category of categories$ | async; let i = index; trackByString"
         class="menu__chip"
         [text]="category"
         [isActive]="i === activeCategoryIndex"
@@ -13,7 +13,7 @@
     <app-search-input class="menu__search" (search)="filterItems($event)"></app-search-input>
   </div>
   <div class="menu__dishes">
-    <div *ngFor="let dish of dishes$ | async; let i = index">
+    <div *ngFor="let dish of dishes$ | async; let i = index; trackBy: trackById">
       <app-menu-card [dish]="dish"></app-menu-card>
     </div>
   </div>

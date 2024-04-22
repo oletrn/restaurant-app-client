@@ -1,7 +1,5 @@
+@import "./fonts";
 :root {
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
-  --padding: 16px;
   --ui-color-white: #fff;
   --ui-color-orange: #F64E0C;
   --font-color-dark-grey: #404B5A;
@@ -13,4 +11,8 @@
   --font-size-16: 1rem;
   --font-size-18: 1.125rem;
   --font-size-24: 1.5rem;
+}
+
+body {
+  font-family: "Poppins-Regular", sans-serif;
 }

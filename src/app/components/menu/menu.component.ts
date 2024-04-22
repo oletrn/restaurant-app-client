@@ -1,11 +1,11 @@
+import { DishCategory } from './../../models/dish-category.enum';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ChipComponent } from '../chip/chip.component';
 import { MenuHeaderComponent } from '../menu-header/menu-header.component';
 import { SearchInputComponent } from '../search-input/search-input.component';
 import { MenuService } from './../../menu.service';
-import { Dish } from './../../models/dish.interface';
+import { UiDishItem } from './../../models/ui-dish-item';
 import { MenuCardComponent } from './../menu-card/menu-card.component';
 
 @Component({
@@ -25,5 +25,13 @@ export class MenuComponent {
 
   filterItems(query: string): void {
     console.log(query);
+  }
+
+  trackById(index: number, dish: UiDishItem): string {
+    return dish.id;
+  }
+
+  trackByString(index: number, item: DishCategory): DishCategory {
+    return item;
   }
 }
