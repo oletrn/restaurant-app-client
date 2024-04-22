@@ -22,7 +22,6 @@ export class MenuComponent {
   dishes$ = this.menuService.fetchedDishes$;
   categories$ = this.menuService.fetchedCategories$;
 
-
   filterItems(query: string): void {
     console.log(query);
   }

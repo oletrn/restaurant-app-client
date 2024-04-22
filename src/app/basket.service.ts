@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject, switchMap, take } from 'rxjs';
 import { ApiService } from './api.service';
 import { UiDataStateService } from './ui-data-state.service';
 import { BasketItem } from './models/basket-item';
@@ -8,8 +8,10 @@ import { BasketItem } from './models/basket-item';
   providedIn: 'root'
 })
 export class BasketService {
-  private isOpen = new BehaviorSubject<boolean>(true);
+  private submitForm = new Subject<string>();
+  private isOpen = new BehaviorSubject<boolean>(false);
   isOpen$ = this.isOpen.asObservable();
+  submitForm$ = this.submitForm.asObservable();
 
 
   private readonly apiService = inject(ApiService);
@@ -26,5 +28,16 @@ export class BasketService {
 
   updateBasket(data: BasketItem): void {
     this.apiService.addToBasket(data).subscribe((res) => this.uiDataMappingService.updateFetchedBasketItems(res));
+  }
+
+  triggerSubmitForm(): void {
+    this.submitForm.next('');
+  }
+
+  emptyBakset(): void {
+    this.uiDataMappingService.fetchedBasketItems$.pipe(
+      take(1),
+      switchMap((items) => this.apiService.emptyBasket(items))).
+      subscribe({ next: () => this.uiDataMappingService.updateFetchedBasketItems([]), complete: () => console.log('complete') });
   }
 }

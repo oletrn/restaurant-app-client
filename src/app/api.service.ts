@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, catchError, mergeMap } from 'rxjs';
+import { Observable, catchError, from, mergeMap } from 'rxjs';
 import { environment } from './../environments/environment.development';
 import { ApiEndpoints } from './api-endpoints.enum';
-import { Dish } from './models/dish.interface';
 import { BasketItem } from './models/basket-item';
+import { Dish } from './models/dish.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class ApiService {
   addToBasket(data: BasketItem): Observable<BasketItem[]> {
     const basketUrl = this.baseUrl + ApiEndpoints.Basket;
 
-    return this.http.get<{ id: string, amount: number }[]>(basketUrl).pipe(
+    return this.http.get<BasketItem[]>(basketUrl).pipe(
       mergeMap(items => {
         const existingItem = items.find(item => item.id === data.id);
         if (existingItem) {
@@ -40,6 +40,17 @@ export class ApiService {
       mergeMap(() => this.http.get<BasketItem[]>(basketUrl)), // Fetch the updated basket after any operation
       catchError(error => {
         console.error('Error managing basket item', error);
+        throw error;
+      })
+    );
+  }
+
+  emptyBasket(items: BasketItem[]): Observable<unknown> {
+    const basketUrl = this.baseUrl + ApiEndpoints.Basket;
+    return from(items).pipe(
+      mergeMap(item => this.http.delete(`${basketUrl}/${item.id}`)),
+      catchError(error => {
+        console.error('Error deleting basket items', error);
         throw error;
       })
     );

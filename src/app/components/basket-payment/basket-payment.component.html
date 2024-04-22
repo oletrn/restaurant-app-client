@@ -1,0 +1,67 @@
+<form [formGroup]="form" class="form">
+  <div class="form__section">
+    <span class="form__subtitle">Contact Information</span>
+    <div formGroupName="contactInfo">
+      <label for="name" class="form__required">Name</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        required
+        placeholder="Enter your full name"
+      />
+
+      <label for="phone" class="form__required">Contact phone number</label>
+      <input
+        type="tel"
+        id="phone"
+        formControlName="phone"
+        required
+        placeholder="+44 XXX XX XX"
+      />
+
+      <label for="email" class="form__required">Email</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        required
+        placeholder="mail@mail.com"
+      />
+    </div>
+  </div>
+
+  <div class="form__section">
+    <span class="form__subtitle">Delivery to</span>
+    <div formGroupName="deliveryTo">
+      <label for="address" class="form__required">Address</label>
+      <input
+        type="text"
+        id="address"
+        formControlName="address"
+        required
+        placeholder="Enter your delivery address"
+      />
+
+      <label for="city" class="form__required">City</label>
+      <input
+        type="text"
+        id="city"
+        formControlName="city"
+        required
+        placeholder="Enter city name"
+      />
+
+      <div class="form__checkbox">
+        <input
+          type="checkbox"
+          id="noConfirmCall"
+          formControlName="noConfirmCall"
+        />
+        <label for="noConfirmCall" class="form__label-checkbox">
+          Do not call me to confirm the order
+        </label>
+      </div>
+    </div>
+  </div>
+</form>
