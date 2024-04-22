@@ -1,28 +1,29 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Component, inject } from '@angular/core';
+import { map } from 'rxjs';
 import { BasketHeaderComponent } from '../basket-header/basket-header.component';
 import { PriceTagComponent } from '../price-tag/price-tag.component';
-import { environment } from './../../../environments/environment';
+import { PrimaryButtonComponent } from '../primary-button/primary-button.component';
 import { BasketService } from './../../basket.service';
 import { BasketItem } from './../../models/basket-item';
 import { OrderStep } from './../../models/order-step.enum';
 import { UiBasketItem } from './../../models/ui-basket-item';
+import { RoundPricePipe } from './../../pipes/round-price.pipe';
 import { UiDataStateService } from './../../ui-data-state.service';
 import { OrderSummaryItemComponent } from './../order-summary-item/order-summary-item.component';
 
 @Component({
   selector: 'app-basket',
   standalone: true,
-  imports: [CommonModule, BasketHeaderComponent, OrderSummaryItemComponent, PriceTagComponent],
+  imports: [CommonModule, BasketHeaderComponent, OrderSummaryItemComponent, PriceTagComponent, PrimaryButtonComponent, RoundPricePipe],
   templateUrl: './basket.component.html',
   styleUrls: ['./basket.component.scss']
 })
 export class BasketComponent {
-  orderStepEnum = OrderStep;
-  currentOrderStep: OrderStep = OrderStep.Confirmation;
-  private basketService = inject(BasketService);
-  private stateService = inject(UiDataStateService);
+  readonly orderStepEnum = OrderStep;
+  readonly currentOrderStep: OrderStep = OrderStep.Confirmation;
+  private readonly basketService = inject(BasketService);
+  private readonly stateService = inject(UiDataStateService);
   readonly basketItems$ = this.stateService.uiBasketItems$;
   readonly basketHadItems$ = this.stateService.uiBasketItems$.pipe(map((items) => !!items.length));
   readonly deliveryFee$ = this.stateService.deliveryFee$;

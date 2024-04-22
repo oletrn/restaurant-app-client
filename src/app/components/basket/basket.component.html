@@ -25,6 +25,10 @@
         <span>Total</span><app-price-tag [price]="totalPrice"></app-price-tag>
       </div>
     </div>
+    <div class="basket__controls">
+      <app-primary-button *ngIf="totalPrice$ | async as price">Order (&#8364;&nbsp;{{(price) | roundPrice}})</app-primary-button>
+      <app-primary-button (click)="onClose()" [color]="'grey'">Continue shopping</app-primary-button>
+    </div>
   </ng-container>
   <ng-template #emptyBasket>
     <div>Your basket is empty.</div>

@@ -1,0 +1,27 @@
+.primary-button {
+  background-color: var(--ui-color-orange);
+  color: var(--ui-color-white);
+  font-family: var(--font-family-600);
+  border: none;
+  padding: 0.5rem 0.75rem;
+  font-size: var(--font-size16);
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  width: 100%;
+
+  &--grey {
+    background-color: var(--bg-color-light-grey);
+    color: var(--ui-color-black);
+  }
+
+  &--hovered {
+    opacity: 0.75;
+  }
+
+  &--pressed {
+    transform: scale(0.95);
+  }
+}

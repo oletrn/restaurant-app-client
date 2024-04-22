@@ -1,0 +1,10 @@
+<button
+  class="primary-button"
+  [ngClass]="{
+    'primary-button--hovered': isHovered,
+    'primary-button--pressed': isPressed,
+    'primary-button--grey': color === 'grey',
+  }"
+>
+  <ng-content></ng-content>
+</button>

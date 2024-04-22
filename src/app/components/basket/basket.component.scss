@@ -36,4 +36,11 @@
       }
     }
   }
+
+  &__controls {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
 }
