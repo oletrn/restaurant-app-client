@@ -6,11 +6,11 @@
         *ngFor="let category of categories$ | async; let i = index; trackByString"
         class="menu__chip"
         [text]="category"
-        [isActive]="i === activeCategoryIndex"
-        (click)="activeCategoryIndex = i"
+        [isActive]="category === (activeCategory$ | async)"
+        (click)="updateActiveCategory(category)"
       ></app-chip>
     </div>
-    <app-search-input class="menu__search" (search)="filterItems($event)"></app-search-input>
+    <app-search-input class="menu__search" (search)="updateSearchQuery($event)"></app-search-input>
   </div>
   <div class="menu__dishes">
     <div *ngFor="let dish of dishes$ | async; let i = index; trackBy: trackById">

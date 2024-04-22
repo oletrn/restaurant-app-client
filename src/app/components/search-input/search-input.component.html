@@ -1,5 +1,5 @@
 <div class="search">
-  <app-ui-icon (click)="emitSearchEvent()" class="search__icon">
+  <app-ui-icon class="search__icon">
     <svg
       width="16"
       height="17"
@@ -19,9 +19,8 @@
   <input
     class="search__input"
     type="text"
-    [(ngModel)]="searchText"
+    [formControl]="searchControl"
     placeholder="Search"
     class="search__input"
-    (keydown)="handleKeydown($event)"
   />
 </div>

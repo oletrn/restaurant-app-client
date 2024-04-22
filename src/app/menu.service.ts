@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { UiDishItem } from './models/ui-dish-item';
 import { UiDataStateService } from './ui-data-state.service';
 import { DishCategory } from './models/dish-category.enum';
@@ -16,4 +16,16 @@ export class MenuService {
       return [DishCategory.All, ...Array.from(uniqueCategories)];
     })
   );
+  private searchQuery = new BehaviorSubject<string>('');
+  private activeCategory = new BehaviorSubject<DishCategory>(DishCategory.All);
+  searchQuery$ = this.searchQuery.asObservable();
+  activeCategory$ = this.activeCategory.asObservable();
+
+  updateActiveCategory(category: DishCategory): void {
+    this.activeCategory.next(category);
+  }
+
+  updateSearchQuery(query: string): void {
+    this.searchQuery.next(query);
+  }
 }
