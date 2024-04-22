@@ -12,11 +12,8 @@ export class BasketService {
   private isOpen = new BehaviorSubject<boolean>(false);
   isOpen$ = this.isOpen.asObservable();
   submitForm$ = this.submitForm.asObservable();
-
-
   private readonly apiService = inject(ApiService);
   private readonly uiDataMappingService = inject(UiDataStateService);
-
 
   openBasket(): void {
     this.isOpen.next(true);
@@ -38,6 +35,6 @@ export class BasketService {
     this.uiDataMappingService.fetchedBasketItems$.pipe(
       take(1),
       switchMap((items) => this.apiService.emptyBasket(items))).
-      subscribe({ next: () => this.uiDataMappingService.updateFetchedBasketItems([]), complete: () => console.log('complete') });
+      subscribe(() => this.uiDataMappingService.updateFetchedBasketItems([]));
   }
 }
