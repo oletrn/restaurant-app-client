@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, map, of, tap } from 'rxjs';
 import { environment } from './../environments/environment';
 import { ApiService } from './api.service';
 import { BasketItem } from './models/basket-item';
@@ -22,7 +22,6 @@ export class UiDataStateService {
   totalAmountInBasket$: Observable<number> = this.fetchedBasketItems$.pipe(
     map(basketItems => basketItems.reduce((acc, item) => acc + item.amount, 0))
   );
-
 
   uiBasketItems$: Observable<UiBasketItem[]> = combineLatest([
     this.fetchedBasketItems$,
@@ -54,6 +53,14 @@ export class UiDataStateService {
       });
     })
   );
+
+  subTotalPriceInBasket$: Observable<number> = this.uiBasketItems$.pipe(
+    map(basketItems => basketItems.reduce((acc, item) => acc + (item.price * item.amount), 0)),
+  );
+
+  deliveryFee$ = of(environment.deliveryfeeInEur);
+
+  totalPriceInBasket$: Observable<number> = combineLatest([this.subTotalPriceInBasket$, this.deliveryFee$]).pipe(map(([subTotal, fee]) => subTotal + fee));
 
   updateFetchedBasketItems(data: BasketItem[]): void {
     this.fetchedBasketItems.next(data)

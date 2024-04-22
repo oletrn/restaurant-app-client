@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { BasketHeaderComponent } from '../basket-header/basket-header.component';
 import { PriceTagComponent } from '../price-tag/price-tag.component';
 import { environment } from './../../../environments/environment';
@@ -18,17 +18,16 @@ import { OrderSummaryItemComponent } from './../order-summary-item/order-summary
   templateUrl: './basket.component.html',
   styleUrls: ['./basket.component.scss']
 })
-export class BasketComponent implements OnInit {
+export class BasketComponent {
   orderStepEnum = OrderStep;
-  orderStep: OrderStep = OrderStep.Confirmation;
-  basketItems$?: Observable<UiBasketItem[]>;
+  currentOrderStep: OrderStep = OrderStep.Confirmation;
   private basketService = inject(BasketService);
   private stateService = inject(UiDataStateService);
-  readonly deliveryFee = environment.deliveryfeeInEur;
-
-  ngOnInit(): void {
-    this.basketItems$ = this.stateService.uiBasketItems$;
-  }
+  readonly basketItems$ = this.stateService.uiBasketItems$;
+  readonly basketHadItems$ = this.stateService.uiBasketItems$.pipe(map((items) => !!items.length));
+  readonly deliveryFee$ = this.stateService.deliveryFee$;
+  readonly totalPrice$ = this.stateService.totalPriceInBasket$;
+  readonly subTotalPrice$ = this.stateService.subTotalPriceInBasket$;
 
   onClose(): void {
     this.basketService.closeBasket();

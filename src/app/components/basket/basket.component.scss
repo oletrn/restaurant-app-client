@@ -25,5 +25,15 @@
     font-family: var(--font-family-500);
     font-size: var(--font-size-16);
     font-weight: 500;
+    margin-top: 3.125rem;
+
+    &-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &:not(:last-child) {
+        margin-bottom: 0.25rem;
+      }
+    }
   }
 }

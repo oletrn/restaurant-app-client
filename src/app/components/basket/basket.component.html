@@ -2,26 +2,31 @@
   <app-basket-header
     class="basket__header"
     [title]="
-      orderStep === orderStepEnum.Confirmation ? 'Your order' : 'Payment'
+      currentOrderStep === orderStepEnum.Confirmation ? 'Your order' : 'Payment'
     "
     (close)="onClose()"
   ></app-basket-header>
-  <div class="basket__items">
-    <app-order-summary-item
-      class="basket__item"
-      *ngFor="let item of basketItems$ | async; trackBy: trackById"
-      [item]="item"
-    ></app-order-summary-item>
-  </div>
-  <div class="basket__summary">
-    <div class="basket__summary-item">
-      <span>Subtotal</span><app-price-tag [price]="13.99"></app-price-tag>
+  <ng-container *ngIf="basketHadItems$ | async; else emptyBasket">
+    <div class="basket__items">
+      <app-order-summary-item
+        class="basket__item"
+        *ngFor="let item of basketItems$ | async; trackBy: trackById"
+        [item]="item"
+      ></app-order-summary-item>
     </div>
-    <div class="basket__summary-item">
-      <span>Delivery fee</span><app-price-tag [price]="deliveryFee"></app-price-tag>
+    <div class="basket__summary">
+      <div class="basket__summary-item" *ngIf="subTotalPrice$ | async as subTotalPrice">
+        <span>Subtotal</span><app-price-tag [price]="subTotalPrice"></app-price-tag>
+      </div>
+      <div class="basket__summary-item" *ngIf="deliveryFee$ | async as fee">
+        <span>Delivery fee</span><app-price-tag [price]="fee"></app-price-tag>
+      </div>
+      <div class="basket__summary-item" *ngIf="totalPrice$ | async as totalPrice">
+        <span>Total</span><app-price-tag [price]="totalPrice"></app-price-tag>
+      </div>
     </div>
-    <div class="basket__summary-item">
-      <span>Total</span><app-price-tag [price]="16.99"></app-price-tag>
-    </div>
-  </div>
+  </ng-container>
+  <ng-template #emptyBasket>
+    <div>Your basket is empty.</div>
+  </ng-template>
 </div>
