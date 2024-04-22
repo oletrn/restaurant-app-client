@@ -20,4 +20,10 @@
     flex-direction: column;
     gap: 0.625rem;
   }
+
+  &__summary {
+    font-family: var(--font-family-500);
+    font-size: var(--font-size-16);
+    font-weight: 500;
+  }
 }

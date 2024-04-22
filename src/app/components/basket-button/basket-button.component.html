@@ -1,4 +1,4 @@
-<div class="basket-button">
+<div class="basket-button" [class.basket-button--has-count]="!!itemCount">
   <svg
     class="basket-button__icon"
     width="24"
@@ -15,5 +15,5 @@
       stroke-linejoin="round"
     />
   </svg>
-  <app-dish-count-icon class="basket-button__count" [count]="itemCount"></app-dish-count-icon>
+  <app-dish-count-icon *ngIf="itemCount > 0" class="basket-button__count" [count]="itemCount"></app-dish-count-icon>
 </div>

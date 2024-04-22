@@ -11,8 +11,13 @@
   --font-size-16: 1rem;
   --font-size-18: 1.125rem;
   --font-size-24: 1.5rem;
+  --font-family-700: "Poppins-Bold";
+  --font-family-600: "Poppins-SemiBold";
+  --font-family-500: "Poppins-Medium";
+  --font-family-400: "Poppins-Regular";
+  --font-family-500: "Poppins-Medium";
 }
 
 body {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: var(--font-family-400), sans-serif;
 }

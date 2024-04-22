@@ -6,6 +6,7 @@
 
   &__name {
     font-size: var(--font-size-16);
+    font-family: var(--font-family-600);
     font-weight: 600;
     margin-bottom: 0.5rem;
   }
@@ -19,6 +20,7 @@
   &__total-price {
     font-size: var(--font-size-16);
     color: var(--ui-color-orange);
+    font-family: var(--font-family-600);
     font-weight: 600;
   }
 

@@ -1,5 +1,5 @@
 .basket-button {
-  position: relative;
+  $self: &;
   width: 5.625rem;
   height: 5.625rem;
   background-color: var(--ui-color-orange);
@@ -8,6 +8,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  position: relative;
+
   &:hover {
     opacity: 0.75;
   }
