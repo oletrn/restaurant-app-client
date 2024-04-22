@@ -24,7 +24,7 @@ export class BasketService {
   }
 
   updateBasket(data: BasketItem): void {
-    this.apiService.addToBasket(data).subscribe((res) => this.uiDataMappingService.updateFetchedBasketItems(res));
+    this.apiService.addToBasket(data).pipe(take(1)).subscribe((res) => this.uiDataMappingService.updateFetchedBasketItems(res));
   }
 
   triggerSubmitForm(): void {

@@ -1,9 +1,8 @@
-import { Component, DestroyRef, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UiIconComponent } from '../ui-icon/ui-icon.component';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { filter, startWith } from 'rxjs';
+import { Component, DestroyRef, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { UiIconComponent } from '../ui-icon/ui-icon.component';
 
 @Component({
   selector: 'app-search-input',
