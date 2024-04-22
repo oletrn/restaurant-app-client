@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, combineLatest, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, map, of, take, tap } from 'rxjs';
 import { environment } from './../environments/environment';
 import { ApiService } from './api.service';
 import { BasketItem } from './models/basket-item';
@@ -67,10 +67,10 @@ export class UiDataStateService {
   }
 
   fetchBasketItems(): void {
-    this.apiService.getBasketItems$().subscribe((data) => this.updateFetchedBasketItems(data));
+    this.apiService.getBasketItems$().pipe(take(1)).subscribe((data) => this.updateFetchedBasketItems(data));
   }
 
   fetchDishes(): void {
-    this.apiService.getDishes$().pipe(map((data) => data.map((item) => ({ ...item, image: this.apiBaseUrl + item.image })))).subscribe((data) => this.fetchedDishes.next(data));
+    this.apiService.getDishes$().pipe(map((data) => data.map((item) => ({ ...item, image: this.apiBaseUrl + item.image }))), take(1)).subscribe((data) => this.fetchedDishes.next(data));
   }
 }

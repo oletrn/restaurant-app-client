@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BasketButtonComponent } from './components/basket-button/basket-button.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { httpErrorInterceptorProviders } from './interceptors/http-error.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { MenuComponent } from './components/menu/menu.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [httpErrorInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
